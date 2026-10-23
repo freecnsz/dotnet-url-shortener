@@ -1,0 +1,18 @@
+# Only Directory.Packages.props and src/ are copied by the Dockerfile; keep the context small and secret-free
+**/bin
+**/obj
+**/*.user
+**/appsettings.Development.json
+.git
+.gitignore
+.vs
+.vscode
+.idea
+.claude
+.env
+.env.*
+docker-compose*.yml
+Dockerfile
+.dockerignore
+*.md
+*.txt

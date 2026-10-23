@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+publish/
+TestResults/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+**/appsettings.Development.json
+.claude/settings.local.json
+
+# OS
+Thumbs.db
+.DS_Store

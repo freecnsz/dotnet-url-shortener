@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/UrlShortener.Api/UrlShortener.Api.csproj" />
+  <Project Path="src/UrlShortener.Application/UrlShortener.Application.csproj" />
+  <Project Path="src/UrlShortener.Domain/UrlShortener.Domain.csproj" />
+  <Project Path="src/UrlShortener.Infrastructure/UrlShortener.Infrastructure.csproj" />
+</Solution>

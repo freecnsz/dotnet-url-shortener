@@ -1,0 +1,26 @@
+@HostAddress = http://localhost:5248
+@ShortCode = replace-me
+@ManageToken = replace-me
+
+POST {{HostAddress}}/api/links
+Content-Type: application/json
+
+{
+  "originalUrl": "https://example.com"
+}
+
+###
+
+GET {{HostAddress}}/{{ShortCode}}
+
+###
+
+GET {{HostAddress}}/api/links/{{ShortCode}}/stats?timeZone=Europe/Istanbul
+X-Manage-Token: {{ManageToken}}
+
+###
+
+DELETE {{HostAddress}}/api/links/{{ShortCode}}
+X-Manage-Token: {{ManageToken}}
+
+###
