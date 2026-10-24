@@ -77,7 +77,10 @@ services:
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
 
   frontend:
-    build: ../url-shortener-frontend
+    build:
+      context: ../url-shortener-frontend
+      args:
+        VITE_CONTACT_EMAIL: "${CONTACT_EMAIL:-}"
     restart: unless-stopped
     depends_on:
       api:

@@ -31,6 +31,13 @@ public sealed class ShortenUrlCommandHandler(
             return ShortUrlErrors.InvalidUrl;
         }
 
+        // Short links to our own domain would allow redirect chains and loops
+        if (absoluteUrlBuilder.PointsToSelf(originalUrl))
+        {
+            logger.LogInformation("Short URL rejected: points to this service.");
+            return ShortUrlErrors.SelfReferencingUrl;
+        }
+
         // Everything that can fail runs before the commit
         var shortCode = shortCodeGenerator.Generate();
         var manageToken = manageTokenService.Generate();

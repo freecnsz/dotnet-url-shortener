@@ -7,6 +7,9 @@ public static class ShortUrlErrors
     public static readonly Error InvalidUrl = Error.Validation(
         "Url.Invalid", "A valid HTTP or HTTPS URL is required.");
 
+    public static readonly Error SelfReferencingUrl = Error.Validation(
+        "Url.SelfReference", "Links to this service cannot be shortened.");
+
     public static readonly Error InvalidTimeZone = Error.Validation(
         "TimeZone.Invalid", "Time zone must be a valid IANA id, e.g. Europe/Istanbul.");
 

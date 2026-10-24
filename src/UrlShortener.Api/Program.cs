@@ -46,11 +46,10 @@ builder.Services.AddLinkCreationRateLimiter();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+// Redis is deliberately not checked: it is only an accelerator and its outage must not mark the API unhealthy
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection")!,
-        name: "PostgreSQL", tags: ["db", "sql", "postgresql"])
-    .AddRedis(builder.Configuration.GetConnectionString("RedisConnection")!,
-        name: "Redis", tags: ["db", "cache", "redis"]);
+        name: "PostgreSQL", tags: ["db", "sql", "postgresql"]);
 
 var app = builder.Build();
 
