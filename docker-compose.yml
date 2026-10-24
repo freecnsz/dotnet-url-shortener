@@ -1,3 +1,6 @@
+# Fixed project name so volume names do not depend on the folder name
+name: urlshortener
+
 services:
   postgres:
     image: postgres:17
@@ -39,11 +42,6 @@ services:
       - seqdata:/data
     ports:
       - "127.0.0.1:5341:80"
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   api:
     build: .
@@ -85,11 +83,16 @@ services:
     depends_on:
       api:
         condition: service_healthy
+      seq:
+        condition: service_started
     ports:
       - "80:80"
       - "443:443"
+      # Temporary Seq UI, see nginx.conf
+      - "8443:8443"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/certbot:/var/www/certbot:ro
 
 volumes:
   pgdata:
